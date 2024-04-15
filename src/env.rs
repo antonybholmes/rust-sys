@@ -1,11 +1,11 @@
 use std::env;
-use dotenvy::dotenv;
+use dotenvy::dotenv_override;
 
 const EMPTY_STRING: &'static str = "";
 
 /// Load envs from .env file
 pub fn load() {
-    dotenv().ok();
+    dotenv_override().ok();
 }
 
 /// List all envs
