@@ -1,10 +1,12 @@
 use std::env;
 use dotenvy::dotenv_override;
 
-const EMPTY_STRING: &'static str = "";
+pub const EMPTY_STR: &'static str = "";
 
 /// Load envs from .env file
 pub fn load() {
+    // force reloading, since env has nasty habit of
+    // caching values and not bothering to overwrite them
     dotenv_override().ok();
 }
 
@@ -19,7 +21,7 @@ pub fn ls() {
 pub fn str(key: &str) -> String {
     match env::var(key) {
         Ok(val) => val,
-        Err(_) => EMPTY_STRING.to_string(),
+        Err(_) => EMPTY_STR.to_string(),
     }
 }
 
